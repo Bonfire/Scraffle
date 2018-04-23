@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Scraffle {
     // Inner Raffle class to combat Selenium's stale element exceptions
     public static class Raffle{
-        String raffleURL = "";
+        String raffleURL;
 
         public Raffle(String URL){
             this.raffleURL = URL;
@@ -61,8 +61,9 @@ public class Scraffle {
 
             try{
                 ((ChromeDriver) webDriver).findElementByXPath("//*[contains(text(), \"That\'s all, no more!\")]");
-            }catch(Exception e){
                 moreRaffles = false;
+            }catch(Exception e){
+                System.out.println("Something Went Wrong!");
             }
         }
 
@@ -71,7 +72,7 @@ public class Scraffle {
         List<WebElement> Raffles = ((ChromeDriver) webDriver).findElementsByXPath("//*[contains(@class, \"panel-raffle\") and not(contains(@class,'raffle-entered'))]/div[1]/div/a");
         int rafflesEntered = 0;
 
-        ArrayList<Raffle> raffleList = new ArrayList<Raffle>();
+        ArrayList<Raffle> raffleList = new ArrayList<>();
 
         for(WebElement raffle : Raffles){
             String raffleURL = raffle.getAttribute("href");

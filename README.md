@@ -3,6 +3,7 @@ A Scrap.TF raffle-entering bot made in Java
 
 ## Description
 Scraffle is a program written in Java made to automatically enter all open raffles on http://scrap.tf/
+
 This project is currently in early development
 
 ## Requirements
@@ -21,6 +22,11 @@ This project is currently in early development
   - Extend to Windows and OSX
   - New raffle monitoring after all current raffles have been entered
   - Raffle item value checking
+  - Make sure raffles are actually entered before continuing (for slower connections)
 
 ## Issues
   - Please report any issues through the repository's issue tracker
+  
+## Notes
+  - You may get banned for using programs like this
+  - You may get hit with a Google reCaptcha. If you do, stop the program, fill it out, and restart the program.
