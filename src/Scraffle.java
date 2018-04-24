@@ -63,7 +63,7 @@ public class Scraffle {
                 ((ChromeDriver) webDriver).findElementByXPath("//*[contains(text(), \"That\'s all, no more!\")]");
                 moreRaffles = false;
             }catch(Exception e){
-                System.out.println("Something Went Wrong!");
+
             }
         }
 
