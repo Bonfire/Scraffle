@@ -25,7 +25,13 @@ public class Scraffle {
     public static void main(String[] args) {
 
         // Initialize the webdriver and navigate to Scrap.TF
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
+        // Make sure we account for multiple platforms too
+        if(System.getProperty("os.name").contains("Windows")){
+            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver.exe");
+        }else{
+            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
+        }
+
         WebDriver webDriver = new ChromeDriver();
         webDriver.get("https://scrap.tf/raffles");
 

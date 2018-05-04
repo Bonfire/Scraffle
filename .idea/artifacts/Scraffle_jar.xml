@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Scraffle:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Scraffle_jar</output-path>
+    <root id="archive" name="Scraffle.jar">
+      <element id="module-output" name="Scraffle" />
+      <element id="extracted-dir" path="$USER_HOME$/Libraries/selenium-server-standalone-3.9.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Libraries/selenium-java-3.11.0/client-combined-3.11.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
