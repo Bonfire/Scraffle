@@ -32,7 +32,7 @@ public class Scraffle {
         Scanner stdin = new Scanner(System.in);
 
         // Create new cookies and set them on our webdriver
-        System.out.print("Please enter your scraptf_session cookie: ");
+        System.out.print("Please enter your cfduid cookie: ");
         Cookie cfdUID = new Cookie("scraptf_session", stdin.nextLine());
         System.out.print("Please enter your scr_session cookie: ");
         Cookie scrapTFSession = new Cookie("scr_session", stdin.nextLine());
@@ -47,6 +47,22 @@ public class Scraffle {
         WebElement steamLogin = ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"navbar-main\"]/ul[2]/li/a");
         steamLogin.click();
 
+        // Enter all current raffles
+        enterRaffles(webDriver);
+
+        // See if the user has won anything, and let them know if they have
+        try{
+            WebElement unclaimedRaffles = ((ChromeDriver) webDriver).findElementByXPath("/html/body/aside/div/a/i18n[1]");
+            System.out.println("You currently have unclaimed raffle winnings!");
+        }catch (Exception e){
+            // No winnings :(
+        }
+
+        // Monitor further raffles every 5 minutes
+        monitorRaffles(webDriver);
+    }
+
+    public static void enterRaffles(WebDriver webDriver){
         webDriver.get("https://scrap.tf/raffles");
 
         if(!webDriver.getTitle().equalsIgnoreCase("Raffles - Scrap.TF")){
@@ -59,11 +75,8 @@ public class Scraffle {
         while(moreRaffles){
             ((ChromeDriver) webDriver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
 
-            try{
-                ((ChromeDriver) webDriver).findElementByXPath("//*[contains(text(), \"That\'s all, no more!\")]");
+            if(webDriver.getPageSource().contains("That's all, no more!")){
                 moreRaffles = false;
-            }catch(Exception e){
-
             }
         }
 
@@ -85,6 +98,11 @@ public class Scraffle {
             webDriver.get(raffleURL);
 
             try{
+                if(webDriver.getPageSource().contains("Withdraw Items")){
+                    System.out.println("Already won raffle. Skipping");
+                    continue;
+                }
+
                 WebElement enterRaffle = ((ChromeDriver) webDriver).findElementByXPath("//*[contains(text(), \"Enter Raffle\")]");
                 enterRaffle.click();
 
@@ -106,7 +124,35 @@ public class Scraffle {
             }
         }
 
-        System.out.println(rafflesEntered + " raffles entered");
+        System.out.println(rafflesEntered + " raffle(s) entered");
+        webDriver.get("https://scrap.tf/raffles");
+    }
 
+    public static void monitorRaffles(WebDriver webDriver){
+        // Once we're done entering all current raffles, we need to monitor for further raffles
+        // See if we haven't entered everything, and if we haven't then enter anything we haven't already entered.
+        // After each check, we sleep for 5 minutes.
+        while(true){
+            System.out.println("Checking for open raffles");
+            webDriver.get("https://scrap.tf/raffles");
+            WebElement enteredRaffles = ((ChromeDriver) webDriver).findElementByXPath("/html/body/div[3]/div[4]/div[2]/div/i18n/var");
+            String[] raffleCountString = enteredRaffles.getText().split("/");
+
+            if(Integer.parseInt(raffleCountString[0]) < Integer.parseInt(raffleCountString[1])){
+                System.out.println("New raffles added! You've currently entered only "
+                        + Integer.parseInt(raffleCountString[0]) + " out of " + Integer.parseInt(raffleCountString[1])
+                        + " raffles!");
+                enterRaffles(webDriver);
+            }else{
+                System.out.println("No open raffles");
+            }
+
+            try{
+                System.out.println("Sleeping for 5 minutes");
+                Thread.sleep(300000);
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+        }
     }
 }
