@@ -9,19 +9,22 @@ This project is currently in early development
 ## Requirements
   - Selenium Chromedriver (Download here: https://sites.google.com/a/chromium.org/chromedriver/downloads)
   
+## Instructions
+  1. Navigate to http://scrap.tf/ and log in
+  2. Paste the required cookie values from your current http://scrap.tf/ session into the program
+  3. All set! Let the program do its thing
+  
 ## Use (Source)
   1. Clone/Download the Scraffle repository
   2. Open the repository in IntelliJ IDEA
-  3. Navigate to http://scrap.tf/ and log in
-  4. Run the program
-  5. Paste the required cookie values from your current http://scrap.tf/ session into the program
-  6. All set! Let the program do its thing
+  3. All set! Run the program and follow the instructions
   
 ## Use (Jar/Artifact)
   1. Navigate to the releases page (https://github.com/Bonfire/Scraffle/releases)
   2. Download the latest jar build and chromedriver from the releases page
   3. Place both the jar and chromedriver in the same folder
-  4. All set! Run the jar file and follow the instructions
+  4. Rename the chromedriver to "chromedriver"
+  5. All set! Run the jar file and follow the instructions
 
 ## Planned Features
   - Raffle item value checking
