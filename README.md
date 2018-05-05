@@ -15,11 +15,11 @@ This project is currently in early development
   
 ## Instructions (Jar/Artifact)
   1. Navigate to the releases page (https://github.com/Bonfire/Scraffle/releases)
-  2. Download the latest ```Scraffle.jar``` file and the chromedriver built for your operating system
+  2. Download the latest ```Scraffle.jar``` file, ```ublock.crx``` file, and the chromedriver built for your operating system
       - ```chromedriver.exe``` for Windows
       - ```chromedriver.Linux``` for Linux
       - ```chromedriver.Mac``` for MacOSX
-  3. Place both ```Scraffle.jar``` and your chromedriver in the same folder
+  3. Place ```Scraffle.jar```, ```ublock.crx```, and your chromedriver in the same folder
   4. Rename your chromedriver to ```chromedriver```, on Windows, make sure it's ```chromedriver.exe```
   5. Navigate to http://scrap.tf/ and log in using Steam
   6. Paste your ```__cfduid```, ```scr_session```, and ```PHPSESSID``` cookie values into a file such as ```cookies.txt```
