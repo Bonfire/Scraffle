@@ -21,9 +21,11 @@ This project is currently in early development
       - ```chromedriver.Mac``` for MacOSX
   3. Place both ```Scraffle.jar``` and your chromedriver in the same folder
   4. Rename your chromedriver to ```chromedriver```, on Windows, make sure it's ```chromedriver.exe```
-  5. Run the jar file through your terminal by running ```java -jar Scraffle.jar```
-  6. Navigate to http://scrap.tf/ and log in using Steam
-  7. Paste the required cookie values from your current http://scrap.tf/ session into the program
+  5. Navigate to http://scrap.tf/ and log in using Steam
+  6. Paste your ```__cfduid```, ```scr_session```, and ```PHPSESSID``` cookie values into a file such as ```cookies.txt```
+      - Be sure to put each cookie value on it's own line
+      - See ```cookies.txt``` in the repository for an example
+  7. Run the jar file through your terminal by running ```java -jar Scraffle.jar < cookies.txt```
   8. All set! Let the program do its thing
 
 ## Planned Features
