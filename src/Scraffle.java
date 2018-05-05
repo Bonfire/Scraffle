@@ -38,11 +38,8 @@ public class Scraffle {
         Scanner stdin = new Scanner(System.in);
 
         // Create new cookies and set them on our webdriver
-        System.out.print("Please enter your cfduid cookie: ");
         Cookie cfdUID = new Cookie("scraptf_session", stdin.nextLine());
-        System.out.print("Please enter your scr_session cookie: ");
         Cookie scrapTFSession = new Cookie("scr_session", stdin.nextLine());
-        System.out.print("Please enter your PHPSESSID cookie: ");
         Cookie scrapPHPSession = new Cookie("PHPSESSID", stdin.nextLine());
 
         webDriver.manage().addCookie(cfdUID);
