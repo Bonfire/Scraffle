@@ -138,7 +138,16 @@ public class Scraffle {
         while(true){
             System.out.println("Checking for open raffles");
             webDriver.get("https://scrap.tf/raffles");
-            WebElement enteredRaffles = ((ChromeDriver) webDriver).findElementByXPath("/html/body/div[3]/div[4]/div[2]/div/i18n/var");
+
+            WebElement enteredRaffles;
+
+            try{
+                enteredRaffles = ((ChromeDriver) webDriver).findElementByXPath("/html/body/div[3]/div[4]/div[2]/div/i18n/var");
+
+            }catch (Exception e){
+                enteredRaffles = ((ChromeDriver) webDriver).findElementByXPath("/html/body/div[3]/div[3]/div[2]/div/i18n/var");
+            }
+
             String[] raffleCountString = enteredRaffles.getText().split("/");
 
             if(Integer.parseInt(raffleCountString[0]) < Integer.parseInt(raffleCountString[1])){
