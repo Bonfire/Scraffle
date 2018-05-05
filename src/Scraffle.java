@@ -2,7 +2,10 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -32,7 +35,12 @@ public class Scraffle {
             System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/chromedriver");
         }
 
-        WebDriver webDriver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addExtensions(new File(System.getProperty("user.dir") + "/ublock.crx"));
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+        WebDriver webDriver = new ChromeDriver(capabilities);
+
         webDriver.get("https://scrap.tf/raffles");
 
         Scanner stdin = new Scanner(System.in);
