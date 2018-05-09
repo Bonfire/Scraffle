@@ -118,7 +118,6 @@ public class Scraffle {
 
                 WebElement enterRaffle = ((ChromeDriver) webDriver).findElementByXPath("//*[contains(text(), \"Enter Raffle\")]");
                 enterRaffle.click();
-
                 WebElement numberOfEntries = ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"raffle-num-entries\"]");
 
                 System.out.println("Entered Raffle! " + numberOfEntries.getAttribute("data-total") + "/" + numberOfEntries.getAttribute("data-max") + " Entries!");
