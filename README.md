@@ -9,8 +9,7 @@ This project is currently in early development
 ## Requirements
   - Selenium Chromedriver (Provided at https://github.com/Bonfire/Scraffle/releases)
   - Java
-  - A Steam account
-  - A https://scrap.tf/ account
+  - A Steam account (https://scrap.tf/ uses your Steam OpenID login)
   - Windows, MacOS, or Linux
   
 ## Instructions (Jar/Artifact)
