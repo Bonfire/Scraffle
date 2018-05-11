@@ -103,7 +103,7 @@ public class Scraffle {
             raffleList.add(new Raffle(raffleURL));
         }
 
-        System.out.println("There are currently " + raffleList.size() + " raffles.");
+        System.out.println("There are currently " + raffleList.size() + " raffle(s) open.");
 
         //  Proceed to go to every raffle and enter them if we can
         for(Raffle raffle : raffleList){
@@ -120,7 +120,7 @@ public class Scraffle {
                 enterRaffle.click();
                 WebElement numberOfEntries = ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"raffle-num-entries\"]");
 
-                System.out.println("Entered Raffle! " + numberOfEntries.getAttribute("data-total") + "/" + numberOfEntries.getAttribute("data-max") + " Entries!");
+                System.out.println("Entered Raffle #" + (raffleList.indexOf(raffle) + 1) + "! " + numberOfEntries.getAttribute("data-total") + "/" + numberOfEntries.getAttribute("data-max") + " Entries!");
                 rafflesEntered++;
 
             }catch(Exception e){
