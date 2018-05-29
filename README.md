@@ -9,16 +9,15 @@ This project is currently in early development
 ## Requirements
   - Selenium Chromedriver (Provided at https://github.com/Bonfire/Scraffle/releases)
   - Java
-  - A Steam account
-  - A https://scrap.tf/ account
+  - A Steam account (https://scrap.tf/ uses your Steam OpenID login)
   - Windows, MacOS, or Linux
   
 ## Instructions (Jar/Artifact)
   1. Navigate to the releases page (https://github.com/Bonfire/Scraffle/releases)
   2. Download the latest ```Scraffle.jar``` file, ```ublock.crx``` file, and the chromedriver built for your operating system
       - ```chromedriver.exe``` for Windows
-      - ```chromedriver.Linux``` for Linux
-      - ```chromedriver.Mac``` for MacOSX
+      - ```chromedriverlinux``` for Linux
+      - ```chromedrivermac``` for MacOSX
   3. Place ```Scraffle.jar```, ```ublock.crx```, and your chromedriver in the same folder
   4. Rename your chromedriver to ```chromedriver```, on Windows, make sure it's ```chromedriver.exe```
   5. Navigate to http://scrap.tf/ and log in using Steam
