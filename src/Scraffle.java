@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -43,16 +44,25 @@ public class Scraffle {
 
         webDriver.get("https://scrap.tf/raffles");
 
-        Scanner stdin = new Scanner(System.in);
+        File cookiesFile = new File(System.getProperty("user.dir") + "/cookies.txt");
 
-        // Create new cookies and set them on our webdriver
-        Cookie cfdUID = new Cookie("scraptf_session", stdin.nextLine());
-        Cookie scrapTFSession = new Cookie("scr_session", stdin.nextLine());
-        Cookie scrapPHPSession = new Cookie("PHPSESSID", stdin.nextLine());
+        Cookie cfdUID;
+        Cookie scrapTFSession;
+        Cookie scrapPHPSession;
 
-        webDriver.manage().addCookie(cfdUID);
-        webDriver.manage().addCookie(scrapTFSession);
-        webDriver.manage().addCookie(scrapPHPSession);
+        try (Scanner stdin = new Scanner(cookiesFile)) {
+
+            // Create new cookies and set them on our webdriver
+            cfdUID = new Cookie("scraptf_session", stdin.nextLine());
+            scrapTFSession = new Cookie("scr_session", stdin.nextLine());
+            scrapPHPSession = new Cookie("PHPSESSID", stdin.nextLine());
+
+            webDriver.manage().addCookie(cfdUID);
+            webDriver.manage().addCookie(scrapTFSession);
+            webDriver.manage().addCookie(scrapPHPSession);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         // Force a steam login
         WebElement steamLogin = ((ChromeDriver) webDriver).findElementByXPath("//*[@id=\"navbar-main\"]/ul[2]/li/a");
@@ -114,6 +124,12 @@ public class Scraffle {
                 if(webDriver.getPageSource().contains("Withdraw Items")){
                     System.out.println("Already won raffle. Skipping");
                     continue;
+                }
+
+                if(webDriver.getPageSource().contains("Bot Prevention")){
+                    System.out.println("Captcha Detected! Exiting");
+                    System.out.println("Please fill out the captcha on your browser");
+                    System.exit(0);
                 }
 
                 WebElement enterRaffle = ((ChromeDriver) webDriver).findElementByXPath("//*[contains(text(), \"Enter Raffle\")]");
